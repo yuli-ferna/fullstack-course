@@ -1,7 +1,7 @@
 import Part from "./Part";
 
-const Content = (parts: any) => {
-
+const Content = (props) => {
+  const { parts } = props;
   return (
     <>
       <Part part={parts[0]}/>
