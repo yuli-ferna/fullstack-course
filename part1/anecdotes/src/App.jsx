@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import Button from './Button'
+
 const AnecdoteMostVoted = ({ anecdote, votes }) => {
-  console.log(anecdote)
   if (!votes) {
-    return <>There is no votes in any anecdote.</>
+    return <p>There is no votes in any anecdote.</p>
   }
   return <>
     <p>{anecdote}</p>
-    <p>{votes}</p>
+    <Votes votes={votes} />
   </>
 };
 
-const Votes = ({votes}) => {
+const Votes = ({ votes }) => {
   if (!votes) {
     return <></>
   }
@@ -36,19 +36,19 @@ const App = () => {
   const [mostVoted, setMostVoted] = useState(null);
 
   const handleVotes = (idSelected) => {
-    const copy = {...votes};
-    if(!copy[idSelected]) {
+    const copy = { ...votes };
+    if (!copy[idSelected]) {
       copy[idSelected] = 0;
     }
     copy[idSelected] += 1;
-    if (!mostVoted) {
+    if (!votes[mostVoted]) {
       setMostVoted(idSelected);
-    } else if (copy[idSelected] > copy[mostVoted]) {
+    } else if (copy[idSelected] >= copy[mostVoted]) {
       setMostVoted(idSelected);
     }
     setVotes(copy);
   };
-console.log(mostVoted)
+
   return (
     <div>
       <h1>Anecdote of the day</h1>
